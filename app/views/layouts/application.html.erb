@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%=full_title(yield(:title)) %></title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
+<head>
+  <title><%=full_title(yield(:title)) %></title>
+  <%= render 'layouts/rails_d' %>
+</head>
+<body>
+  <%= render 'layouts/header' %>
+  <div class="container">
     <%= yield %>
-  </body>
+    <%= render 'layouts/footer' %>
+  </div>
+</body>
 </html>
