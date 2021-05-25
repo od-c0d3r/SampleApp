@@ -66,6 +66,11 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = " " * 6
     assert_not @user.valid?
   end
+
+  test "password should identicate the confirmation password" do
+    @user.password = @user.password_confirmation = "a" * 6
+    assert @user.valid?
+  end
   
   test "password should have minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
