@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       reset_session
-      remember user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       flash[:success] = 'Welcome Back!'
       redirect_to user
+      debugger
     else
       flash.now[:danger] = 'Invalid email/password combination'
       # display error messages
@@ -18,8 +19,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
-    clear_cookies
+    if logged_in?
+      log_out
+    end
     redirect_to root_url
   end
   
