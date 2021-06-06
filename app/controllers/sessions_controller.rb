@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
       log_in user
       flash[:success] = 'Welcome Back!'
       redirect_to user
-      debugger
     else
       flash.now[:danger] = 'Invalid email/password combination'
       # display error messages
