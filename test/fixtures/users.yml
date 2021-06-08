@@ -5,3 +5,8 @@ omar:
   email: omar_rashad@aol.com
   password_digest: <%= User.digest('password')%> 
   
+rashad:
+  name: Rashad Omar
+  email: rashad_omar@aol.com
+  password_digest: <%= User.digest('password')%> 
+  
