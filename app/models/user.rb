@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   before_save { self.email.downcase! }
 
+  has_many :microposts, dependent: :destroy
+
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -20,6 +22,10 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id) #or just `microposts`
   end
 
   def remember

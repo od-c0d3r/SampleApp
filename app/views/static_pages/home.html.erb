@@ -1,17 +1,5 @@
-<div class="center jumbotron">
-    <h1>Welcome to the Sample App</h1>
-
-    <h2>
-        This is the home page for the
-        <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-        sample application.
-    </h2>
-    <% if logged_in? %>
-    <% else %>
-    <%= link_to "Sign up now!", '/signup', class: "btn btn-lg btn-primary" %>
-    <% end %>
-
-</div>
-
-<%= link_to image_tag("rails.svg", alt: "Rails logo", width: "200"),
-                      "https://rubyonrails.org/" %>
+<% if logged_in? %>
+  <%= render  "static_pages/loggedin_home" %>
+<% else %>
+  <%= render  "static_pages/visitor_home" %>
+<% end %>
